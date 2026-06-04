@@ -8,3 +8,4 @@ PyJWT
 passlib[argon2]
 pyotp
 email-validator
+python-multipart

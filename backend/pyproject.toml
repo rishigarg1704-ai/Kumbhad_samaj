@@ -13,7 +13,8 @@ dependencies = [
   "PyJWT",
   "passlib[argon2]",
   "pyotp",
-  "email-validator"
+  "email-validator",
+  "python-multipart"
 ]
 
 [tool.uvicorn]
