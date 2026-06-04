@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: kumbhad_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kumbhad_samaj
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: kumbhad_backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+psycopg://postgres:postgres@postgres:5432/kumbhad_samaj
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_uploads:/app/uploads
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: kumbhad_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data:
+  backend_uploads:

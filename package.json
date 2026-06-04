@@ -1,0 +1,25 @@
+{
+  "name": "kumbhad-samaj-trust",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev:frontend",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "npm --workspace frontend run build",
+    "lint": "npm run lint:frontend",
+    "lint:frontend": "npm --workspace frontend run lint",
+    "dev:backend": "cd backend && .venv/bin/uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "check:backend": "cd backend && .venv/bin/python -m compileall app",
+    "test:backend": "cd backend && .venv/bin/python -m unittest discover -s tests",
+    "db:migrate": "cd backend && .venv/bin/alembic -c alembic.ini upgrade head"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "@tanstack/react-query": "^5.101.0",
+    "react-hook-form": "^7.77.0",
+    "zod": "^4.4.3"
+  }
+}

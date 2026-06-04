@@ -1,0 +1,20 @@
+[project]
+name = "kumbhad-samaj-backend"
+version = "0.1.0"
+description = "FastAPI backend foundation"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic-settings",
+  "sqlalchemy",
+  "alembic",
+  "psycopg[binary]",
+  "PyJWT",
+  "passlib[argon2]",
+  "pyotp",
+  "email-validator"
+]
+
+[tool.uvicorn]
+factory = false
