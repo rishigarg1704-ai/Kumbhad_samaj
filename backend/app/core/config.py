@@ -22,6 +22,13 @@ class Settings(BaseSettings):
     google_oauth_client_id: str = ""
     google_oauth_client_secret: str = ""
     google_oauth_redirect_url: str = "http://localhost:8000/api/v1/auth/google/callback"
+
+    @field_validator("google_oauth_client_id", "google_oauth_client_secret", "google_oauth_redirect_url", mode="before")
+    @classmethod
+    def strip_whitespace(cls, v: str) -> str:
+        if isinstance(v, str):
+            return v.strip()
+        return v
     admin_email: str = "admin@example.com"
     admin_password_hash: str = ""
     admin_2fa_secret: str = ""
